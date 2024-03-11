@@ -1,0 +1,14 @@
+version: '1'
+services:
+  pyspark-app:
+    build: .
+    container_name: pyspark-container
+    volumes:
+      - ./data:/usr/src/app/data
+      - ./src:/usr/src/app/src
+      - ./tests:/usr/src/app/tests
+      - ./drivers:/usr/src/app/drivers
+    environment:
+      - SPARK_HOME=/usr/local/spark
+      - PYSPARK_PYTHON=/usr/local/bin/python
+    command: ["python", "src/app.py"]
